@@ -1,10 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Card from "./Card";
 
 function Home() {
-  // const [name, setName] = useState("");
-  // const [content, setContent] = useState("");
   const [wholeData, setWholeData] = useState([]);
 
   useEffect(() => {
@@ -19,7 +18,13 @@ function Home() {
       });
   }, []);
 
-  return <div>{wholeData.map((item) => <p>{item.name}</p>)}</div>;
+  return (
+    <div>
+      {wholeData.map((item) => {
+        return <Card name={item.name} content={item.content} />;
+      })}
+    </div>
+  );
 }
 
 export default Home;

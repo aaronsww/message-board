@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
+import Navbar from "../components/Navbar";
 import Home from "../components/Home";
 import Add from "../components/Add";
 
@@ -10,7 +11,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* <Navbar /> */}
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/add" element={<Add />} />

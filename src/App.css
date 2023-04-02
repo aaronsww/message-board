@@ -1,3 +1,20 @@
+body{
+    margin: 0 auto;
+}
+.nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 13vh;
+    background-color: aquamarine;
+}
+.nav>div{
+    display: flex;
+}
+.navButton{
+    margin-left: 4rem;
+}
+
 .compose{
     display: flex;
    flex-direction: column;
