@@ -1,0 +1,10 @@
+.compose{
+    display: flex;
+   flex-direction: column;
+   width: 30%;
+   margin: 5% 35%;
+}
+.compose>textarea{
+    height: 200px;
+    margin: 10px 0px 10px 0px;
+}
