@@ -1,6 +1,9 @@
 body{
     margin: 0 auto;
 }
+.title{
+    font-size: 30px;
+}
 .nav{
     display: flex;
     justify-content: space-around;
@@ -8,20 +11,67 @@ body{
     height: 13vh;
     background-color: aquamarine;
 }
-.nav>div{
+.navElements{
     display: flex;
 }
 .navButton{
+    text-decoration: none;
+    font-size: 20px;
+}
+.navButton{
     margin-left: 4rem;
+}
+
+.add{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.new{
+    margin: 3% 0 2% 0;
+    font-size: 28px;
+    font-weight: 700;
 }
 
 .compose{
     display: flex;
    flex-direction: column;
    width: 30%;
-   margin: 5% 35%;
 }
-.compose>textarea{
-    height: 200px;
+.name{
+    height: 30px;
+    font-size: 17px;
+    /* border-radius: 8px; */
+}
+.content{
+    min-height: 200px;
     margin: 10px 0px 10px 0px;
+    padding: 5px;
+    font-size: 19px;
+    /* border-radius: 8px; */
+}
+.send{
+    font-size: 19px;
+    padding: 10px 0 10px 0;
+   letter-spacing: 1px;
+   justify-self: flex-end;
+   width: 100%;
+}
+.card{
+   margin: 5% 0 0 17%;
+}
+.message{
+    border: 2px solid;
+    width: 80%;
+    font-size: 28px;
+    padding: 10px;
+    border-radius: 8px;
+}
+.user{
+    margin-top: 10px;
+    font-size: 18px;
+}
+.date{
+    margin-top: 5px;
+    font-size: 14px;
 }

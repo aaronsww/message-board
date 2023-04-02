@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import "../src/App.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Add() {
   const [name, setName] = useState("");
@@ -25,23 +26,26 @@ function Add() {
   };
 
   return (
-    <div className="compose">
-      <form onSubmit={handleSubmit}>
+    <div className="add">
+      <div className="new">Add A New Message:</div>
+      <form className="compose" onSubmit={handleSubmit}>
         <input
-          className=""
-          placeholder="Enter Name"
+          className="name"
+          placeholder="Name"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <textarea
-          className=""
-          placeholder="Enter Message"
+          className="content"
+          placeholder="Say Something..."
           type="text"
           value={content}
           onChange={(e) => setContent(e.target.value)}
         />
-        <button type="submit">Send</button>
+        <button className="send" type="submit">
+          Add
+        </button>
       </form>
     </div>
   );

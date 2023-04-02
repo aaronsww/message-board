@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <div className="nav">
-      <p>Mini Message Board</p>
-      <div>
+      <p className="title">Mini Message Board</p>
+      <div className="navElements">
         <p className="navButton">
           <Link to="/">Message Board</Link>
         </p>

@@ -21,7 +21,9 @@ function Home() {
   return (
     <div>
       {wholeData.map((item) => {
-        return <Card name={item.name} content={item.content} />;
+        return (
+          <Card name={item.name} content={item.content} date={item.date} />
+        );
       })}
     </div>
   );
