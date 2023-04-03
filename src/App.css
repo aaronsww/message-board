@@ -1,18 +1,19 @@
 body{
     margin: 0 auto;
     font-family: 'Merriweather', serif;
-
+    background-color: #ebece5;
 }
 .title{
     font-size: 30px;
     font-family: 'Cinzel Decorative', cursive;
+    color: #231F20 ;
 }
 .nav{
     display: flex;
     justify-content: space-around;
     align-items: center;
     height: 13vh;
-    background-color: aquamarine;
+    background-color: #93C0A4;
 }
 .navElements{
     display: flex;
@@ -21,12 +22,13 @@ body{
     text-decoration: none;
     font-size: 20px;
     font-weight: 700;
+    color: #0D5C63;
 }
 .navButton{
     margin-left: 4rem;
 }
 .navButton a:hover{
-    color: blueviolet;
+    color: #ebece5;
     transition: 0.2s;
 }
 .add{
@@ -48,14 +50,16 @@ body{
 .name{
     height: 30px;
     font-size: 17px;
-    /* border-radius: 8px; */
+    border-radius: 8px;
+    border: 1px solid;
+    padding: 5px;
 }
 .content{
     min-height: 200px;
     margin: 10px 0px 10px 0px;
     padding: 5px;
     font-size: 19px;
-    /* border-radius: 8px; */
+    border-radius: 8px;
 }
 .send{
     font-size: 19px;
@@ -63,6 +67,12 @@ body{
    letter-spacing: 1px;
    justify-self: flex-end;
    width: 100%;
+   border-radius: 8px;
+   border: 1px solid;
+}
+.send:hover{
+    cursor: pointer;
+    background-color: #ebece5;
 }
 .card{
    margin: 5% 0 0 17%;
@@ -81,4 +91,5 @@ body{
 .date{
     margin-top: 5px;
     font-size: 14px;
+    color: grey;
 }
