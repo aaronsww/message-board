@@ -7,7 +7,7 @@ function Navbar() {
       <p className="title">Mini Message Board</p>
       <div className="navElements">
         <p className="navButton">
-          <Link to="/">Message Board</Link>
+          <Link to="/">Messages</Link>
         </p>
         <p className="navButton">
           <Link to="/add">Add Message</Link>
