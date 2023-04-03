@@ -12,7 +12,6 @@ body{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 13vh;
     background-color: #93C0A4;
 }
 .navElements{
