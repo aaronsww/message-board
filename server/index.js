@@ -1,10 +1,13 @@
 const express = require("express");
 const app = express();
 var cors = require("cors");
+const jwt = require('jsonwebtoken');
+// const _ = require("loadash");
 // const users = require('./routes/users')
 
 app.use(express.json());
 app.use(cors());
+
 // app.use('/api/users', users)
 
 const mongoose = require("mongoose");
@@ -61,11 +64,17 @@ const User = mongoose.model(
 app.post("/api/users", async (req, res) => {
   console.log(req.body);
 
+  // const user = new User(_.pick(req.body, ["name", "email", "password"]));
+
   const user = new User({
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
   });
+
+  const token = jwt.sign({ _id: user._id}, 'jwtPrivateKey')
+  res.send(token);
+
   const result = await user.save();
 
   return res.json(result);
