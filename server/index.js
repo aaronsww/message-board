@@ -1,9 +1,11 @@
 const express = require("express");
 const app = express();
 var cors = require("cors");
+// const users = require('./routes/users')
 
 app.use(express.json());
 app.use(cors());
+// app.use('/api/users', users)
 
 const mongoose = require("mongoose");
 
@@ -37,6 +39,34 @@ app.post("/api/messages/add", async (req, res) => {
     content: req.body.content,
   });
   const result = await message.save();
+
+  return res.json(result);
+});
+
+const User = mongoose.model(
+  "User",
+  new mongoose.Schema({
+    name: { type: String, required: true, minlength: 5, maxlength: 50 },
+    email: {
+      type: String,
+      unique: true,
+      required: true,
+      minlength: 5,
+      maxlength: 250,
+    },
+    password: { type: String, required: true, minlength: 5, maxlength: 1025 },
+  })
+);
+
+app.post("/api/users", async (req, res) => {
+  console.log(req.body);
+
+  const user = new User({
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
+  });
+  const result = await user.save();
 
   return res.json(result);
 });
