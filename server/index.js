@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const Joi = require("joi");
 // const users = require('./routes/users')
+const auth = require("./middleware/auth");
 
 require("dotenv").config();
 
@@ -33,7 +34,7 @@ app.get("/api/messages", async (req, res) => {
   return res.json(messages);
 });
 
-app.post("/api/messages/add", async (req, res) => {
+app.post("/api/messages/add", auth, async (req, res) => {
   console.log(req.body);
 
   const message = new Message({
@@ -60,7 +61,12 @@ const User = mongoose.model(
   })
 );
 
-app.post("/api/users", async (req, res) => {
+app.get("api/me", auth, async (req, res) => {
+  const user = await User.findById(req.user._id).select("-password");
+  send.res(user);
+});
+
+app.post("/api/register", async (req, res) => {
   console.log(req.body);
 
   const { error } = validateUser(req.body);
@@ -81,7 +87,7 @@ app.post("/api/users", async (req, res) => {
   await user.save();
 
   const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
-  res.send(token);
+  res.header("x-auth-token", token).send(user);
 });
 
 function validateUser(user) {
