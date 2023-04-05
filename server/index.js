@@ -1,9 +1,12 @@
 const express = require("express");
 const app = express();
 var cors = require("cors");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 // const _ = require("loadash");
 // const users = require('./routes/users')
+
+require("dotenv").config();
+console.log(process.env);
 
 app.use(express.json());
 app.use(cors());
@@ -24,10 +27,6 @@ const messageSchema = new mongoose.Schema({
 });
 
 const Message = mongoose.model("Message", messageSchema);
-
-app.get("/", (req, res) => {
-  res.send("Hello John");
-});
 
 app.get("/api/messages", async (req, res) => {
   const messages = await Message.find();
@@ -64,20 +63,32 @@ const User = mongoose.model(
 app.post("/api/users", async (req, res) => {
   console.log(req.body);
 
-  // const user = new User(_.pick(req.body, ["name", "email", "password"]));
+  const { error } = validateUser(req.body);
+  if (error) return res.status(404).send(error.details[0].message);
 
-  const user = new User({
+  let user = await User.findOne({ email: req.body.email });
+  if (user) return res.status(400).send("User already registered");
+
+  user = new User({
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
   });
 
-  const token = jwt.sign({ _id: user._id}, 'jwtPrivateKey')
+  await user.save();
+
+  const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
   res.send(token);
-
-  const result = await user.save();
-
-  return res.json(result);
 });
+
+function validateUser(user) {
+  const schema = {
+    name: Joi.string().min(5).max(50).required(),
+    email: Joi.string().min(5).max(255).required().email(),
+    password: Joi.string().min(5).max(255).required(),
+  };
+
+  return Joi.validate(user, schema);
+}
 
 app.listen(5000, () => console.log("Listening on port 5000"));

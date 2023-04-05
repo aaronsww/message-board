@@ -43,11 +43,11 @@ function Add() {
           value={content}
           onChange={(e) => setContent(e.target.value)}
         />
-        <Link to="/">
+        {/* <Link to="/"> */}
         <button className="send" type="submit">
           Add
         </button>
-        </Link>
+        {/* </Link> */}
       </form>
     </div>
   );
