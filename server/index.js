@@ -2,11 +2,11 @@ const express = require("express");
 const app = express();
 var cors = require("cors");
 const jwt = require("jsonwebtoken");
-// const _ = require("loadash");
+const bcrypt = require("bcrypt");
+const Joi = require("joi");
 // const users = require('./routes/users')
 
 require("dotenv").config();
-console.log(process.env);
 
 app.use(express.json());
 app.use(cors());
@@ -75,6 +75,9 @@ app.post("/api/users", async (req, res) => {
     password: req.body.password,
   });
 
+  const salt = await bcrypt.genSalt(10);
+  user.password = await bcrypt.hash(user.password, salt);
+
   await user.save();
 
   const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
@@ -82,13 +85,13 @@ app.post("/api/users", async (req, res) => {
 });
 
 function validateUser(user) {
-  const schema = {
+  const schema = Joi.object({
     name: Joi.string().min(5).max(50).required(),
     email: Joi.string().min(5).max(255).required().email(),
     password: Joi.string().min(5).max(255).required(),
-  };
+  });
 
-  return Joi.validate(user, schema);
+  return schema.validate(user);
 }
 
 app.listen(5000, () => console.log("Listening on port 5000"));
