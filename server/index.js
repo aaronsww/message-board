@@ -10,7 +10,8 @@ const auth = require("./middleware/auth");
 require("dotenv").config();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+// app.enableCors({ exposedHeaders: "session-id" });
 
 // app.use('/api/users', users)
 
@@ -35,10 +36,12 @@ app.get("/api/messages", async (req, res) => {
 });
 
 app.post("/api/messages/add", auth, async (req, res) => {
-  console.log(req.body);
+  console.log(req);
+
+  const user = await User.findById(req.user._id).select("-password");
 
   const message = new Message({
-    name: req.body.name,
+    name: user.name,
     content: req.body.content,
   });
   const result = await message.save();
@@ -88,6 +91,18 @@ app.post("/api/register", async (req, res) => {
 
   const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
   res.header("x-auth-token", token).send(user);
+});
+
+app.post("/api/login", async (req, res) => {
+  let user = await User.findOne({ email: req.body.email });
+  const result = await bcrypt.compare(req.body.password, user.password);
+  if (result) {
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
+    res.cookie("jwt", token, { httpOnly: true, maxAge: 3600000 });
+    res.header("x-auth-token", token).send(user);
+  } else {
+    res.status(401).send("Access denied. Invalid credentials.");
+  }
 });
 
 function validateUser(user) {

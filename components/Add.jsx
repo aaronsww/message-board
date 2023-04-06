@@ -2,11 +2,12 @@ import React from "react";
 import { useState } from "react";
 import "../src/App.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Add() {
   const [name, setName] = useState("");
   const [content, setContent] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -17,9 +18,11 @@ function Add() {
         {
           name: name,
           content: content,
-        }
+        },
+        { withCredentials: true }
       );
       console.log(response.data);
+      navigate("/");
     } catch (error) {
       console.error(error);
     }

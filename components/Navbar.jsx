@@ -1,7 +1,9 @@
-import React from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../components/AuthProvider";
 
 function Navbar() {
+  const { isAuth } = useContext(AuthContext);
   return (
     <div className="nav">
       <p className="title">Mini Message Board</p>
@@ -9,9 +11,16 @@ function Navbar() {
         <p className="navButton">
           <Link to="/">Messages</Link>
         </p>
-        <p className="navButton">
-          <Link to="/add">Add Message</Link>
-        </p>
+        {isAuth && (
+          <p className="navButton">
+            <Link to="/add">Add Message</Link>
+          </p>
+        )}
+        {!isAuth && (
+          <p className="navButton">
+            <Link to="/login">Login</Link>
+          </p>
+        )}
       </div>
     </div>
   );
