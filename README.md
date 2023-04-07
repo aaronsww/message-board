@@ -6,7 +6,14 @@
 
 Welcome to the MERN Stack Message Board! This full-stack web application allows users to view messages on a message board, and logged-in users can add messages to the board.
 
-### Features:
+### Technologies Used
+
+- MongoDB: a NoSQL database for storing data
+- Express: a Node.js framework for building APIs
+- React: a JavaScript library for building user interfaces
+- Node.js: a JavaScript runtime for building server-side applications
+
+### Features
 
 - View messages on the message board
 - Register as a new user
