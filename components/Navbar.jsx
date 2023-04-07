@@ -21,11 +21,6 @@ function Navbar() {
             <Link to="/login">Login</Link>
           </p>
         )}
-        {!isAuth && (
-          <p className="navButton">
-            <Link to="/register">Register</Link>
-          </p>
-        )}
       </div>
     </div>
   );

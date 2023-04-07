@@ -31,15 +31,8 @@ function Add() {
 
   return (
     <div className="add">
-      <div className="new">Add A New Message:</div>
+      <div className="new">Add New Message:</div>
       <form className="compose" onSubmit={handleSubmit}>
-        <input
-          className="name"
-          placeholder="Name"
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
         <textarea
           className="content"
           placeholder="Say Something..."
@@ -47,11 +40,9 @@ function Add() {
           value={content}
           onChange={(e) => setContent(e.target.value)}
         />
-        {/* <Link to="/"> */}
         <button className="send" type="submit">
           Add
         </button>
-        {/* </Link> */}
       </form>
     </div>
   );
