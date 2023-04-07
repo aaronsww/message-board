@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import Home from "../components/Home";
 import Add from "../components/Add";
 import Login from "../components/Login";
+import Register from "../components/Register";
 import { AuthProvider } from "../components/AuthProvider";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/add" element={<Add />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

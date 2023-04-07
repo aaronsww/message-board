@@ -19,6 +19,7 @@ function Add() {
           name: name,
           content: content,
         },
+        //send req with cookie
         { withCredentials: true }
       );
       console.log(response.data);

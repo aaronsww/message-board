@@ -10,8 +10,9 @@ const auth = require("./middleware/auth");
 require("dotenv").config();
 
 app.use(express.json());
+
+//added parameter
 app.use(cors({ origin: "http://localhost:5173", credentials: true }));
-// app.enableCors({ exposedHeaders: "session-id" });
 
 // app.use('/api/users', users)
 
@@ -98,7 +99,10 @@ app.post("/api/login", async (req, res) => {
   const result = await bcrypt.compare(req.body.password, user.password);
   if (result) {
     const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
+
+    //set token as cookie
     res.cookie("jwt", token, { httpOnly: true, maxAge: 3600000 });
+
     res.header("x-auth-token", token).send(user);
   } else {
     res.status(401).send("Access denied. Invalid credentials.");
