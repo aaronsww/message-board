@@ -1,6 +1,7 @@
 # Message Board
 
-<a href="">Live Demonstartion.</a>
+<!-- <a href="">Live Demonstartion.</a> -->
+Note: This project is not deployed yet.
 
 ## Project Summary
 
