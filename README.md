@@ -22,8 +22,10 @@ Welcome to the MERN Stack Message Board! This full-stack web application allows 
 
 ### In Action
 
-<img src="" alt="">
-<img src="" alt="">
+<img src="images\Mini Message Board - Google Chrome 20-04-2023 11_09_17.png" alt="">
+<img src="images\Mini Message Board - Google Chrome 20-04-2023 11_09_29.png" alt="">
+<img src="images\Mini Message Board - Google Chrome 20-04-2023 11_10_02.png" alt="">
+
 
 ## Credits
 
