@@ -23,11 +23,11 @@ function Home() {
 
   return (
     <div>
-     {!isAuth && (
-          <p className="goLogin">
-             <Link to ="/register">Register</Link>&nbsp; &nbsp;to add a message
-          </p>
-        )}
+      {!isAuth && (
+        <p className="goLogin">
+          <Link to="/register">Register</Link>&nbsp; &nbsp;to add a message
+        </p>
+      )}
       {wholeData.map((item) => {
         return (
           <Card name={item.name} content={item.content} date={item.date} />
