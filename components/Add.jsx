@@ -14,7 +14,7 @@ function Add() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/messages/add",
+        `${import.meta.env.VITE_API_BASE_URL}/api/messages/add`,
         {
           name: name,
           content: content,

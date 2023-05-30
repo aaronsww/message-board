@@ -10,6 +10,7 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  // process.env = {...process.env, ...loadEnv(mode, process.cwd())}
 
   const { setIsAuth, setUser } = useContext(AuthContext);
 
@@ -18,7 +19,7 @@ function Register() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/register",
+        `${import.meta.env.VITE_API_BASE_URL}/api/register`,
         {
           name,
           email,
@@ -29,7 +30,7 @@ function Register() {
       navigate("/login");
     } catch (error) {
       console.error(error);
-      alert(error)
+      alert(error);
     }
   };
 
@@ -58,7 +59,9 @@ function Register() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <p className="prompt"><Link to="/login">Already have an account ?</Link></p>
+        <p className="prompt">
+          <Link to="/login">Already have an account ?</Link>
+        </p>
         <button className="send" type="submit">
           Sign up
         </button>

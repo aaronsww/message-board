@@ -11,7 +11,7 @@ function Home() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/messages")
+      .get(`${import.meta.env.VITE_API_BASE_URL}/api/messages`)
       .then((res) => {
         console.log(res);
         setWholeData(res.data);
