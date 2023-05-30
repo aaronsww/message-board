@@ -12,7 +12,7 @@ require("dotenv").config();
 app.use(express.json());
 
 //added parameter
-app.use(cors({ origin: "*", credentials: true }));
+app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
 
 // app.use('/api/users', users)
 
